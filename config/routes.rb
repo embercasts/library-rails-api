@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   jsonapi_resources :authors
   jsonapi_resources :books
   jsonapi_resources :reviews
+  jsonapi_resources :users, only: [:create]
 end
