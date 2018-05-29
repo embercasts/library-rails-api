@@ -19,4 +19,8 @@ class ApplicationController < JSONAPI::ResourceController
       }
     end
   end
+
+  def context
+    {current_user: @current_user}
+  end
 end
