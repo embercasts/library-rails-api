@@ -1,11 +1,19 @@
 class AuthorResource < JSONAPI::Resource
-  attributes :first, :last
+  attributes :first, :last, :username
   has_many :books
 
   filters :query
 
   before_save do
     @model.user_id = context[:current_user].id if @model.new_record?
+  end
+
+  def username
+    @model.user.username
+  end
+
+  def self.records(options = {})
+    super.includes(:user)
   end
 
   def self.apply_filter(records, filter, value, options)
